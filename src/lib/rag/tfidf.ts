@@ -17,7 +17,7 @@ export function tokenize(text: string): string[] {
   const unigrams = lowered.match(TOKEN_RE) ?? [];
   const grams: string[] = [...unigrams];
   for (let i = 0; i + 1 < unigrams.length; i++) {
-    grams.push(`${unigrams[i]} ${unigrams[i + 1]}`);
+    grams.push(`${unigrams[i]!} ${unigrams[i + 1]!}`);
   }
   return grams;
 }
@@ -77,7 +77,7 @@ function vectorize(
   const vec: SparseVector = new Map();
   let norm = 0;
   for (const [idx, tf] of counts) {
-    const weight = (1 + Math.log(tf)) * idf[idx];
+    const weight = (1 + Math.log(tf)) * idf[idx]!;
     vec.set(idx, weight);
     norm += weight * weight;
   }
@@ -107,7 +107,7 @@ export function tfidfRank(index: TfidfIndex, query: string, topK: number): Array
   const q = transformQuery(index, query);
   const scored: Array<[number, number]> = [];
   for (let i = 0; i < index.docVectors.length; i++) {
-    const score = cosineSparse(q, index.docVectors[i]);
+    const score = cosineSparse(q, index.docVectors[i]!);
     if (score > 0) scored.push([i, score]);
   }
   scored.sort((a, b) => b[1] - a[1]);

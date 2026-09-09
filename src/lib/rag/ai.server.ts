@@ -64,7 +64,7 @@ export async function embedTexts(
 
 export function cosine(a: number[], b: number[]): number {
   let dot = 0;
-  for (let i = 0; i < Math.min(a.length, b.length); i++) dot += a[i] * b[i];
+  for (let i = 0; i < Math.min(a.length, b.length); i++) dot += a[i]! * b[i]!;
   return dot;
 }
 
