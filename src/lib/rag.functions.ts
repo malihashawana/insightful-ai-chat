@@ -268,7 +268,7 @@ export const runRetrievalEvaluation = createServerFn({ method: "POST" })
     await supabaseAdmin.from("eval_runs").insert({
       label: "live retrieval evaluation",
       sample_size: sample.length,
-      results: resultRows,
+      results: resultRows as unknown as Record<string, number>[],
     });
 
     return { sampleSize: sample.length, rows: resultRows, durationMs: Date.now() - started };
