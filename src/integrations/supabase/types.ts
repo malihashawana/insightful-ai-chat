@@ -14,13 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      eval_runs: {
+        Row: {
+          created_at: string
+          id: number
+          label: string
+          results: Json
+          sample_size: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          label?: string
+          results?: Json
+          sample_size?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          label?: string
+          results?: Json
+          sample_size?: number
+        }
+        Relationships: []
+      }
+      legal_sections: {
+        Row: {
+          act: string
+          created_at: string
+          doc_id: number
+          embedding: unknown
+          id: number
+          n_words: number
+          section: string
+          section_text: string
+        }
+        Insert: {
+          act?: string
+          created_at?: string
+          doc_id: number
+          embedding?: unknown
+          id?: number
+          n_words?: number
+          section?: string
+          section_text: string
+        }
+        Update: {
+          act?: string
+          created_at?: string
+          doc_id?: number
+          embedding?: unknown
+          id?: number
+          n_words?: number
+          section?: string
+          section_text?: string
+        }
+        Relationships: []
+      }
+      qa_pairs: {
+        Row: {
+          act: string
+          answer: string
+          answer_words: number
+          created_at: string
+          difficulty: string
+          id: number
+          language: string
+          question: string
+          question_type: string
+          question_words: number
+          row_id: number
+          section: string
+          split: string
+        }
+        Insert: {
+          act?: string
+          answer?: string
+          answer_words?: number
+          created_at?: string
+          difficulty?: string
+          id?: number
+          language?: string
+          question: string
+          question_type?: string
+          question_words?: number
+          row_id: number
+          section?: string
+          split?: string
+        }
+        Update: {
+          act?: string
+          answer?: string
+          answer_words?: number
+          created_at?: string
+          difficulty?: string
+          id?: number
+          language?: string
+          question?: string
+          question_type?: string
+          question_words?: number
+          row_id?: number
+          section?: string
+          split?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      match_legal_sections: {
+        Args: { match_count?: number; query_embedding: unknown }
+        Returns: {
+          act: string
+          doc_id: number
+          score: number
+          section: string
+          section_text: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
