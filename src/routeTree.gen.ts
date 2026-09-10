@@ -10,11 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DatasetRouteImport } from './routes/dataset'
+import { Route as EvaluationRouteImport } from './routes/evaluation'
+import { Route as MethodRouteImport } from './routes/method'
+import { Route as RetrievalRouteImport } from './routes/retrieval'
 import { Route as ApiPublicIngestRouteImport } from './routes/api/public/ingest'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatasetRoute = DatasetRouteImport.update({
+  id: '/dataset',
+  path: '/dataset',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvaluationRoute = EvaluationRouteImport.update({
+  id: '/evaluation',
+  path: '/evaluation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodRoute = MethodRouteImport.update({
+  id: '/method',
+  path: '/method',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RetrievalRoute = RetrievalRouteImport.update({
+  id: '/retrieval',
+  path: '/retrieval',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicIngestRoute = ApiPublicIngestRouteImport.update({
@@ -25,27 +49,62 @@ const ApiPublicIngestRoute = ApiPublicIngestRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/method': typeof MethodRoute
+  '/retrieval': typeof RetrievalRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/method': typeof MethodRoute
+  '/retrieval': typeof RetrievalRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dataset': typeof DatasetRoute
+  '/evaluation': typeof EvaluationRoute
+  '/method': typeof MethodRoute
+  '/retrieval': typeof RetrievalRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/public/ingest'
+  fullPaths:
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/method'
+    | '/retrieval'
+    | '/api/public/ingest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/public/ingest'
-  id: '__root__' | '/' | '/api/public/ingest'
+  to:
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/method'
+    | '/retrieval'
+    | '/api/public/ingest'
+  id:
+    | '__root__'
+    | '/'
+    | '/dataset'
+    | '/evaluation'
+    | '/method'
+    | '/retrieval'
+    | '/api/public/ingest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatasetRoute: typeof DatasetRoute
+  EvaluationRoute: typeof EvaluationRoute
+  MethodRoute: typeof MethodRoute
+  RetrievalRoute: typeof RetrievalRoute
   ApiPublicIngestRoute: typeof ApiPublicIngestRoute
 }
 
@@ -56,6 +115,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dataset': {
+      id: '/dataset'
+      path: '/dataset'
+      fullPath: '/dataset'
+      preLoaderRoute: typeof DatasetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evaluation': {
+      id: '/evaluation'
+      path: '/evaluation'
+      fullPath: '/evaluation'
+      preLoaderRoute: typeof EvaluationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/method': {
+      id: '/method'
+      path: '/method'
+      fullPath: '/method'
+      preLoaderRoute: typeof MethodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/retrieval': {
+      id: '/retrieval'
+      path: '/retrieval'
+      fullPath: '/retrieval'
+      preLoaderRoute: typeof RetrievalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/ingest': {
@@ -70,6 +157,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatasetRoute: DatasetRoute,
+  EvaluationRoute: EvaluationRoute,
+  MethodRoute: MethodRoute,
+  RetrievalRoute: RetrievalRoute,
   ApiPublicIngestRoute: ApiPublicIngestRoute,
 }
 export const routeTree = rootRouteImport
