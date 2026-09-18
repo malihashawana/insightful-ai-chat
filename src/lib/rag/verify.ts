@@ -20,22 +20,24 @@ export function normalizeCitation(text: string): string {
 export function extractCitations(text: string): string[] {
   const citations: string[] = [];
 
-  for (const m of text.matchAll(/(?:section|sec\.?)\s*([0-9]+[A-Za-z]?)/gi)) {
+  for (const m of text.matchAll(/(?:sections?|sec\.?)\s*[:\-–—]?\s*([0-9]+[A-Za-z]?)/gi)) {
     citations.push(m[1]!);
   }
-  for (const m of text.matchAll(/sections\s*([0-9A-Za-z]+)\s*(?:&|and|,)\s*([0-9A-Za-z]+)/gi)) {
+  for (const m of text.matchAll(
+    /sections?\s*[:\-–—]?\s*([0-9A-Za-z]+)\s*(?:&|and|,)\s*([0-9A-Za-z]+)/gi,
+  )) {
     citations.push(m[1]!, m[2]!);
   }
   for (const m of text.matchAll(/schedule\s*(?:i|[0-9]+)\s*article\s*([0-9]+[A-Za-z]?)/gi)) {
     citations.push(`Article ${m[1]!}`);
   }
-  for (const m of text.matchAll(/article\s*([0-9]+[A-Za-z]?)/gi)) {
+  for (const m of text.matchAll(/article\s*[:\-–—]?\s*([0-9]+[A-Za-z]?)/gi)) {
     citations.push(`Article ${m[1]!}`);
   }
-  for (const m of text.matchAll(/ধারা\s*([০-৯0-9]+[ক-হ]?)/g)) {
+  for (const m of text.matchAll(/ধারা\s*[:\-–—]?\s*([০-৯0-9]+[ক-হ]?)/g)) {
     citations.push(toEnglishDigits(m[1]!));
   }
-  for (const m of text.matchAll(/অনুচ্ছেদ\s*([০-৯0-9]+)/g)) {
+  for (const m of text.matchAll(/অনুচ্ছেদ\s*[:\-–—]?\s*([০-৯0-9]+)/g)) {
     citations.push(`Article ${toEnglishDigits(m[1]!)}`);
   }
 
