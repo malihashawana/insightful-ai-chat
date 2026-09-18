@@ -11,17 +11,17 @@ import { compareRetrieval } from "@/lib/rag.functions";
 export const Route = createFileRoute("/retrieval")({
   head: () => ({
     meta: [
-      { title: "Retrieval Lab — TF-IDF vs Dense Retrieval on Bangladeshi Statutes" },
+      { title: "Retrieval Analysis — Explainable Evidence Selection for Bangla Law" },
       {
         name: "description",
         content:
-          "Run the same legal query through the lexical TF-IDF baseline and dense multilingual embedding retrieval, and compare ranked statutory sections side by side.",
+          "Explain how TF-IDF and multilingual semantic retrieval select different legal evidence for Bangla judgment understanding.",
       },
-      { property: "og:title", content: "Retrieval Lab — TF-IDF vs Dense Retrieval" },
+      { property: "og:title", content: "Retrieval Analysis — Beyond Summarization" },
       {
         property: "og:description",
         content:
-          "Side-by-side comparison of lexical and semantic retrieval over a 1,614-section Bangladeshi statutory corpus.",
+          "A transparent comparison of lexical and semantic evidence selection over Bangladeshi law.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -57,6 +57,15 @@ function RetrievalLab() {
           Scores are cosine similarities in both panels, so they are directly comparable.
         </p>
       </header>
+
+      <section className="mb-6 border-y border-border py-4">
+        <span className="rule-label">What this experiment explains</span>
+        <div className="mt-2 grid gap-4 text-sm leading-relaxed text-muted-foreground md:grid-cols-3">
+          <p><strong className="text-foreground">TF-IDF</strong> reveals evidence chosen because the query and provision share visible words or phrases.</p>
+          <p><strong className="text-foreground">Dense retrieval</strong> reveals evidence chosen because the query and provision are close in multilingual meaning.</p>
+          <p><strong className="text-foreground">Overlap</strong> shows where both methods agree; disagreement exposes retrieval uncertainty for review.</p>
+        </div>
+      </section>
 
       <form
         className="panel mb-6 p-4"

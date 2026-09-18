@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bangladesh Legal RAG — Verified Statutory Question Answering" },
+      { title: "Beyond Summarization — Explainable Bangla Legal Judgment Understanding" },
       {
         name: "description",
         content:
-          "Bilingual retrieval-augmented question answering over Bangladeshi statutes with citation and evidence verification.",
+          "A trustworthy, explainable framework for understanding Bangla legal judgments through grounded retrieval and result verification.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

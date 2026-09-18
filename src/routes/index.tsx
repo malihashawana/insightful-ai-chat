@@ -17,17 +17,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bangladesh Legal RAG Assistant — Verified Statutory Answers" },
+      { title: "Beyond Summarization — Explainable Bangla Legal Judgment Assistant" },
       {
         name: "description",
         content:
-          "Bilingual retrieval-augmented legal QA over Bangladeshi statutes, with dense and TF-IDF retrieval and automatic citation and evidence verification.",
+          "A trustworthy, explainable framework for understanding Bangla legal judgments through bilingual retrieval, grounded analysis, and automatic verification.",
       },
-      { property: "og:title", content: "Bangladesh Legal RAG Assistant" },
+      { property: "og:title", content: "Beyond Summarization — Bangla Legal Judgment Understanding" },
       {
         property: "og:description",
         content:
-          "Ask legal questions in Bangla or English and get answers grounded in retrieved statutory text, with citation and support verification.",
+          "Explore Bangla legal questions through source-grounded analysis, transparent retrieval, and citation and evidence verification.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -93,14 +93,14 @@ function AssistantPage() {
       <div className="grid gap-8 lg:grid-cols-[1fr_18rem]">
         <div>
           <header className="mb-6">
-            <span className="rule-label">Retrieval-augmented legal question answering</span>
+            <span className="rule-label">Beyond Summarization</span>
             <h1 className="mt-2 text-3xl font-semibold">
-              Ask a Bangladeshi legal question — in Bangla or English
+              A trustworthy, explainable framework for understanding Bangla legal judgments
             </h1>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Every answer is generated strictly from statutory sections retrieved out of a
-              1,614-section corpus, then checked automatically for citation validity and evidence
-              support before it is shown to you.
+              Ask in Bangla or English. The system goes beyond a short summary by retrieving the
+              governing provisions, producing a grounded legal explanation, and showing why the
+              result passed or failed its trust checks.
             </p>
           </header>
 
@@ -159,6 +159,37 @@ function AssistantPage() {
                     </div>
 
                     <VerificationPanel verification={turn.result.verification} />
+
+                    <section className="panel p-5">
+                      <span className="rule-label">Explanatory analysis</span>
+                      <h2 className="mb-3 mt-1 font-display text-lg font-semibold">
+                        How to understand this result
+                      </h2>
+                      <div className="grid gap-4 text-sm leading-relaxed md:grid-cols-3">
+                        <div>
+                          <h3 className="font-semibold">1. Evidence selection</h3>
+                          <p className="mt-1 text-muted-foreground">
+                            The {turn.result.method === "dense" ? "multilingual semantic" : "lexical TF-IDF"}{" "}
+                            retriever ranked {turn.result.retrieved.length} provisions as most relevant
+                            to the question.
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">2. Grounded interpretation</h3>
+                          <p className="mt-1 text-muted-foreground">
+                            The answer was constrained to those provisions. Each source below remains
+                            visible so its wording can be compared with the generated interpretation.
+                          </p>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold">3. Trust decision</h3>
+                          <p className="mt-1 text-muted-foreground">
+                            The verdict combines citation matching with semantic evidence support;
+                            neither signal alone establishes legal correctness.
+                          </p>
+                        </div>
+                      </div>
+                    </section>
 
                     <div>
                       <span className="rule-label">
@@ -269,11 +300,11 @@ function AssistantPage() {
           <div className="panel p-4">
             <span className="rule-label">Pipeline</span>
             <ol className="mt-2 space-y-1.5 text-sm text-muted-foreground">
-              <li>1. Retrieve statutory sections</li>
-              <li>2. Build grounded prompt</li>
-              <li>3. Generate constrained answer</li>
-              <li>4. Verify citations</li>
-              <li>5. Score evidence support</li>
+              <li>1. Understand the bilingual question</li>
+              <li>2. Retrieve relevant legal provisions</li>
+              <li>3. Generate a grounded explanation</li>
+              <li>4. Trace citations to evidence</li>
+              <li>5. Explain the trust verdict</li>
             </ol>
           </div>
         </aside>

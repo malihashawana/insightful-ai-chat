@@ -4,17 +4,17 @@ import { AppShell } from "@/components/AppShell";
 export const Route = createFileRoute("/method")({
   head: () => ({
     meta: [
-      { title: "Methodology — Grounded Legal RAG with Automatic Answer Verification" },
+      { title: "Methodology — Beyond Summarization" },
       {
         name: "description",
         content:
-          "Pipeline design, retrieval mathematics, prompt constraints, citation checking and evidence support scoring behind the Bangladesh legal RAG system.",
+          "Methodology for a trustworthy, explainable framework for understanding Bangla legal judgments beyond surface summarization.",
       },
-      { property: "og:title", content: "Methodology — Grounded Legal RAG" },
+      { property: "og:title", content: "Methodology — Beyond Summarization" },
       {
         property: "og:description",
         content:
-          "How the corpus, retrievers, constrained generation and two-stage verification layer fit together, with defence talking points.",
+          "How bilingual evidence retrieval, grounded explanation, and two-stage verification support trustworthy legal understanding.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -45,11 +45,12 @@ function MethodPage() {
   return (
     <AppShell>
       <header className="mb-6">
-        <span className="rule-label">Defence documentation</span>
-        <h1 className="mt-2 text-3xl font-semibold">Methodology and design rationale</h1>
+        <span className="rule-label">Beyond Summarization</span>
+        <h1 className="mt-2 text-3xl font-semibold">A trustworthy, explainable framework for understanding Bangla legal judgments</h1>
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-          The system answers Bangladeshi legal questions only from retrieved statutory text, and
-          treats every generated answer as untrusted until it passes two independent checks.
+          The framework does not stop at compressing legal text. It connects a question to relevant
+          provisions, produces a source-grounded explanation, exposes the evidence, and treats every
+          generated interpretation as untrusted until it passes two independent checks.
         </p>
       </header>
 
@@ -130,9 +131,10 @@ function MethodPage() {
           </p>
         </Section>
 
-        <Section n="4" title="Constrained generation">
+        <Section n="4" title="Beyond summarization: grounded explanation">
           <p>
-            The generator receives only the retrieved sections and is instructed never to invent a
+            Instead of merely shortening a judgment or provision, the generator answers the user's
+            legal question from the retrieved sections and is instructed never to invent a
             rule, deadline, penalty, section number or Act; to answer in the language of the
             question; to refuse when the evidence is insufficient; and to emit citations in a fixed
             machine-checkable format. Limitation periods must never be guessed — the single most
@@ -140,7 +142,21 @@ function MethodPage() {
           </p>
         </Section>
 
-        <Section n="5" title="Verification layer">
+        <Section n="5" title="Explainability by design">
+          <p>
+            Each result preserves a visible chain from the question to ranked evidence, generated
+            interpretation, extracted citations, matched provisions and final verdict. The user can
+            inspect both the source wording and the reason for a failed check rather than receiving
+            an unexplained confidence label.
+          </p>
+          <p>
+            This is procedural explainability: it shows what evidence influenced the answer and how
+            the trust decision was computed. It does not claim to reveal a language model's hidden
+            reasoning process.
+          </p>
+        </Section>
+
+        <Section n="6" title="Verification layer">
           <p>
             <strong>Citation check:</strong> section and article references are extracted from the
             answer in both English and Bangla, Bengali numerals are normalised to Latin digits, and
@@ -159,7 +175,7 @@ function MethodPage() {
           </p>
         </Section>
 
-        <Section n="6" title="Limitations and future work">
+        <Section n="7" title="Limitations and future work">
           <p>
             Recall@5 near 0.61 means roughly two in five questions do not retrieve their gold
             section — a generation ceiling no prompt can fix. Hybrid lexical-plus-dense fusion,

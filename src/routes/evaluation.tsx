@@ -20,17 +20,17 @@ import { runRetrievalEvaluation } from "@/lib/rag.functions";
 export const Route = createFileRoute("/evaluation")({
   head: () => ({
     meta: [
-      { title: "Evaluation — Recall@K for TF-IDF and Dense Legal Retrieval" },
+      { title: "Trustworthiness Evaluation — Beyond Summarization" },
       {
         name: "description",
         content:
-          "Recall@1, Recall@3 and Recall@5 results comparing TF-IDF and dense retrieval on held-out Bangladeshi legal questions, reproducible live in the browser.",
+          "Evaluate retrieval reliability and answer verification for the explainable Bangla legal judgment framework.",
       },
-      { property: "og:title", content: "Evaluation — Recall@K for Legal Retrieval" },
+      { property: "og:title", content: "Trustworthiness Evaluation — Beyond Summarization" },
       {
         property: "og:description",
         content:
-          "Reported notebook benchmarks and a live reproducible Recall@K evaluation of the legal retrieval pipeline.",
+          "Reproducible retrieval benchmarks and verification analysis for trustworthy Bangla legal understanding.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -181,6 +181,24 @@ function EvaluationPage() {
           )}
         </section>
       </div>
+
+      <section className="mt-6 border-y border-border py-5">
+        <span className="rule-label">Interpretation for the defence</span>
+        <div className="mt-3 grid gap-5 text-sm leading-relaxed md:grid-cols-3">
+          <div>
+            <h2 className="font-display text-base font-semibold">What Recall@K proves</h2>
+            <p className="mt-1 text-muted-foreground">It measures whether the known relevant provision appears among the evidence shown to the answer generator.</p>
+          </div>
+          <div>
+            <h2 className="font-display text-base font-semibold">Why multilingual E5 helps</h2>
+            <p className="mt-1 text-muted-foreground">Meaning can align across Bangla and English even when the question and legal text share few surface words.</p>
+          </div>
+          <div>
+            <h2 className="font-display text-base font-semibold">What it cannot prove</h2>
+            <p className="mt-1 text-muted-foreground">Retrieval recall does not establish that the generated interpretation is legally correct; citation and support checks remain necessary.</p>
+          </div>
+        </div>
+      </section>
 
       <section className="panel mt-6 p-5">
         <span className="rule-label">Experiment 3 — verification under varying evidence</span>

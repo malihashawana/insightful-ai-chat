@@ -13,6 +13,17 @@ function Row({ label, value }: { label: string; value: string }) {
 export function VerificationPanel({ verification }: { verification: Verification }) {
   const verified = verification.status === "VERIFIED";
   const pct = Math.max(0, Math.min(1, verification.supportScore)) * 100;
+  const decisionReasons = [
+    verification.citationFound
+      ? "The answer contains an identifiable section or article reference."
+      : "No machine-readable section or article reference was found in the answer.",
+    verification.citationValid
+      ? "At least one cited provision matches the retrieved evidence."
+      : "The cited provision could not be matched to the retrieved evidence.",
+    verification.supportValid
+      ? `Semantic support ${verification.supportScore.toFixed(4)} meets the ${verification.threshold.toFixed(2)} threshold.`
+      : `Semantic support ${verification.supportScore.toFixed(4)} is below the ${verification.threshold.toFixed(2)} threshold.`,
+  ];
 
   return (
     <div className="panel overflow-hidden">
@@ -35,6 +46,18 @@ export function VerificationPanel({ verification }: { verification: Verification
       </div>
 
       <div className="px-4 py-3">
+        <div className="mb-4 border-b border-border pb-3">
+          <span className="rule-label">Why this verdict</span>
+          <ol className="mt-2 space-y-1.5 text-sm leading-relaxed text-foreground/85">
+            {decisionReasons.map((reason, index) => (
+              <li key={reason} className="flex gap-2">
+                <span className="font-mono text-xs text-muted-foreground">{index + 1}.</span>
+                <span>{reason}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         <div className="mb-3">
           <div className="mb-1 flex items-center justify-between">
             <span className="rule-label">Evidence support</span>
@@ -64,6 +87,10 @@ export function VerificationPanel({ verification }: { verification: Verification
           label="Retrieved sections"
           value={verification.retrievedSections.join(" · ") || "—"}
         />
+        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+          This verdict measures traceability to the retrieved text, not whether a court would adopt
+          the interpretation. A verified answer can still require expert legal review.
+        </p>
       </div>
     </div>
   );

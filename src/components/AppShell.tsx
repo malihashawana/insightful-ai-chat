@@ -20,10 +20,8 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Scale className="size-4.5" />
             </span>
             <span className="leading-tight">
-              <span className="block font-display text-base font-semibold">
-                Bangladesh Legal RAG
-              </span>
-              <span className="rule-label">Retrieval · Generation · Verification</span>
+              <span className="block font-display text-base font-semibold">Beyond Summarization</span>
+              <span className="rule-label">Bangla legal judgment understanding</span>
             </span>
           </Link>
 
@@ -46,8 +44,8 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="mx-auto max-w-6xl px-5 pb-10 pt-4">
         <p className="text-xs text-muted-foreground">
-          Research prototype for academic evaluation. Retrieved statutory text is reproduced from the
-          Bangladesh Legal QA dataset and is not legal advice.
+          Research prototype for academic evaluation. It explains answers through retrieved statutory
+          evidence and automated checks; it does not replace legal interpretation or legal advice.
         </p>
       </footer>
     </div>
