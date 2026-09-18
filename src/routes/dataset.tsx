@@ -25,13 +25,13 @@ const statsQuery = queryOptions({
 export const Route = createFileRoute("/dataset")({
   head: () => ({
     meta: [
-      { title: "Dataset — Bangladesh Legal QA Corpus Statistics" },
+      { title: "Research Corpus — Beyond Summarization" },
       {
         name: "description",
         content:
-          "Exploratory analysis of the 2,165-record bilingual Bangladesh legal QA dataset: language balance, Acts covered, question types and the deduplicated statutory corpus.",
+          "Corpus analysis for an explainable Bangla legal judgment framework, covering language balance, Acts, question types, and statutory evidence.",
       },
-      { property: "og:title", content: "Dataset — Bangladesh Legal QA Corpus" },
+      { property: "og:title", content: "Research Corpus — Beyond Summarization" },
       {
         property: "og:description",
         content:
